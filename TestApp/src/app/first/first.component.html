@@ -1,0 +1,41 @@
+{{greetUser()}}<br>
+<input type="text" [id]="myId" #myInput bind-disabled="isDisabled">
+<h2 class="text-danger" [class]="successClass">Welcome</h2>
+<button (click) = "handlegreet($event)" (click)="printMessage(myInput.value)">Greet</button> 
+<div *ngFor="let color of colors">
+<h2>{{color}}</h2>
+</div>
+<div *ngIf="displayname; then ifBlock; else elseBlock;">
+</div>
+
+<ng-template #ifBlock>
+    <h2>If block content</h2>
+</ng-template>
+
+<ng-template #elseBlock>
+    <h2>else block content</h2>
+</ng-template>
+
+<div [ngSwitch]="color">
+<h2 *ngSwitchCase="'red'">This is in red</h2>
+<h2 *ngSwitchCase="'blue'">This is in blue</h2>
+<h2 *ngSwitchCase="'green'">This is in green</h2>
+<h2 *ngSwitchDefault>Pick Again</h2>
+</div>
+
+
+<h2>Displaying parent data - {{myName}}</h2>
+
+<button (click)="fireEvent()"></button>
+
+<h3>Employee List</h3>
+<ul *ngFor="let employee of employeeList">
+{{errormsg}}
+<li>{{employee.id}}-{{employee.name}} </li>
+</ul>
+
+<h3>Student List</h3>
+<ul *ngFor="let student of student_list">
+<li>{{student.id}}-{{student.name}} </li>
+</ul>
+

@@ -1,0 +1,33 @@
+<div class="transaction-history">
+  <h2 class="transaction-history-title display-6">Transaction History</h2>
+  <hr>
+  <div class="transaction-list">
+    <div class="transaction-item row" *ngFor="let transaction of transactions" (click)="showTransactionDetails(transaction)">
+      <div class="col-6 transaction-details">
+        <div class="transaction-type">{{ transaction.type }}</div>
+        <div class="transaction-icon">
+          <span *ngIf="transaction.type === 'Payment'">
+            <i class="bi bi-cash-stack"></i>
+          </span>
+          <span *ngIf="transaction.type === 'Refund'">
+            <i class="bi bi-arrow-repeat"></i>
+          </span>
+        </div>
+        <div class="transaction-recipient">
+          {{ transaction.type === 'Payment' ? 'to ' + transaction.recipient : 'from ' + transaction.source }}
+        </div>
+      </div>
+      <div class="col-6 text-end">
+        <div class="transaction-date">{{ transaction.date }}</div>
+        <div class="transaction-amount">{{ transaction.amount }}</div>
+        <div class="transaction-source">
+          {{ transaction.type === 'Payment' ? 'Debited from ': '' }}
+          <ng-container [ngSwitch]="transaction.source">
+            <img *ngSwitchCase="'SBI'" src="assets/icons/SBI-logo.svg.png" alt="SBI Icon" height="20px" width="20px"/>
+            <img *ngSwitchCase="'HDFC'" src="assets/icons/HDFC_Bank_logo_PNG3.png.png" alt="HDFC Icon" height="20px" width="20px"/>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
